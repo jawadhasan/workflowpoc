@@ -1,0 +1,45 @@
+<form #personalForm="ngForm" novalidate>
+    <div class="row">
+
+        <div class="col-xs-offset-2 col-xs-10-sm-offset-2 col-sm-8">
+
+            <div class="row">
+
+                <div class="col-xs-12 col-sm-6">
+                    <div class="form-group">
+                        <mat-form-field>
+
+                            <input type="text" matInput name="firstname" [(ngModel)]="personal.firstName" placeholder="First Name" required>
+                            <mat-error>First Name is required.</mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+
+                <div class='col-xs-12 col-sm-6'>
+                    <div class="form-group">
+                        <mat-form-field>
+                            <input type="text" matInput name="lastName" [(ngModel)]="personal.lastName" placeholder="Last Name"
+                                required>
+                            <mat-error>Last Name is required.</mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="form-group">
+                <mat-form-field>
+                    <input type="email" matInput name="email" [(ngModel)]="personal.email" placeholder="Email" required
+                        pattern="^[^\s@]+@[^\s@]+\.[^\s@]{2,}$">
+                    <mat-error>Email is required.</mat-error>
+                </mat-form-field>
+            </div>
+
+            <div class="text-center">
+                <button [disabled]="!personalForm.valid" (click)="goToNext(personalForm)" mat-button>Next</button>
+            </div>
+
+        </div>
+    </div>
+</form>

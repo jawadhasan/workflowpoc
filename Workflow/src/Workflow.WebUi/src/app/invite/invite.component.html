@@ -1,0 +1,40 @@
+<div class="page-layout blank p-24" fusePerfectScrollbar>
+  
+  <form #inviteForm="ngForm" novalidate class="example-form">
+
+    <mat-form-field class="example-full-width">
+      <input name="email" [(ngModel)]="wfinviteForm.sourceEmailAddress" type="email" matInput pattern="^[^\s@]+@[^\s@]+\.[^\s@]{2,}$"
+        placeholder="Email address" required>
+      <mat-error>Email is required</mat-error>
+    </mat-form-field>
+
+
+
+    <mat-form-field class="example-full-width">    
+      <mat-select [(value)]="wfinviteForm.workflowName" required placeholder="Workflow">
+        <ng-container *ngFor="let workflow of onboardingService.supportedWorkflows">
+          <mat-option value="{{workflow.value}}">{{workflow.value}}</mat-option>
+        </ng-container>
+      </mat-select>
+    </mat-form-field>
+
+    <button (click)="invite(inviteForm)" [disabled]="!inviteForm.valid" mat-raised-button color="primary">Invite</button>
+  </form>
+</div>
+
+<div>
+    <a [href]="workflowUrl">{{workflowUrl}}</a>
+</div>
+
+
+
+
+<hr>
+<p>Client Request</p>
+<pre>{{wfinviteForm | json}}</pre>
+
+<hr>
+<p>Server Response</p>
+<pre>
+  {{workflowInvitationResponse | json}}
+</pre>

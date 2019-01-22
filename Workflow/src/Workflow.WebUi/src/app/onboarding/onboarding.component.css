@@ -1,0 +1,19 @@
+
+.head {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 25px;
+    text-transform: uppercase;
+    padding-bottom: 10px;
+  }
+
+  .leftDiv{
+    float: left;
+    padding-right: 50px;
+    background-color: burlywood;
+  }
+  .rightDiv{
+    position: absolute;
+    top:500px;
+    right:100px;
+    background-color: #ccc;
+  }

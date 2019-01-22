@@ -1,0 +1,19 @@
+<form #workForm="ngForm" novalidate>
+
+    <div class="row">
+      <div class="col-xs-offset-4 col-xs-10 col-sm-offset-5 col-sm-4">            
+        <div class="add-bottom-padding">
+            <mat-radio-group [(ngModel)]="workType" name="workType"  class="workRadioGroup" required>
+              <mat-radio-button  value="Design">Design</mat-radio-button>
+              <mat-radio-button  value="Code">Code</mat-radio-button>
+              <mat-radio-button  value="Deploy">Deploy</mat-radio-button>
+            </mat-radio-group>
+        </div>
+      </div>
+    </div> 
+    <br />
+    <div class="text-center">
+      <button [disabled]="!workForm.valid" (click)="goToNext(workForm)"  mat-button>Next</button>
+  </div>  
+
+</form>
