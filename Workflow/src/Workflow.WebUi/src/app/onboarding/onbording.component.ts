@@ -26,16 +26,6 @@ export class OnboardingComponent implements OnInit {
 
     //this callback is responsible for routing to next step after save is called.
     this.onboardingService.stepCompleted.subscribe(step => {
-      // this.stepper.selected.completed = true; //could be done systamtically
-      // this.stepper.selected.editable = true; ////could be done systamtically
-      // this.stepper.next();
-
-      // //if last step (result) then navigate to other part of the app.
-      // if (step == STEPS.result) {
-      //   this.stepper.reset();
-      //   this.router.navigate(["/projects"]);
-      // }
-
       this.onStepCompletedHandler(step);
     });
 
@@ -56,7 +46,7 @@ export class OnboardingComponent implements OnInit {
     //if last step (result) then navigate to other part of the app.
     if (step == STEPS.result) {
       this.stepper.reset();
-      this.router.navigate(["/projects"]);
+      this.router.navigate(["/"]);
     }
   }
 
@@ -70,6 +60,7 @@ export class OnboardingComponent implements OnInit {
           this.workflow = new OnboardingWorkflow(data);  
           this.rawData = data;
           this.onboardingService.workflow = this.workflow;
+          console.log(this.onboardingService.workflow);
           this.onboardingService.setFormData(this.onboardingService.workflow.workflowData);
           this.gotoRoute();
         }else{

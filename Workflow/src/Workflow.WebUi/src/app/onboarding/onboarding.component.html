@@ -1,36 +1,41 @@
+<mat-horizontal-stepper labelPosition="bottom" [linear]="isLinear" #stepper>
 
-  <mat-horizontal-stepper labelPosition="bottom" [linear]="isLinear" #stepper>
+  <div *ngFor="let step of onboardingService.workflow?.steps">
 
-    <div *ngFor="let step of onboardingService.workflow?.steps">
-
-      <mat-step [completed]="step.valid" [editable]="step.editable">
-        <ng-template matStepLabel>{{step.step}}</ng-template>
-        <div class="text-center">
-          <h4 class="head">{{step.title}}</h4>
-        </div>
-      </mat-step>
-
-    </div>
-
-  </mat-horizontal-stepper>
-  <router-outlet></router-outlet>
-
-
-
-  <div *ngIf="showDebugInfo">
-    <hr>
-    <div class="row">
-      <div class="col col-md-6">
-        <div class="left">
-          <p>Workflow</p>
-          <pre>{{workflow | json}}</pre>
-        </div>
+    <mat-step [completed]="step.valid">
+      <ng-template matStepLabel>
+        <i class="{{step.icon}}"></i>
+      </ng-template>
+      <div class="text-center">
+        <h4 class="head">{{step.title}}</h4>
       </div>
-      <div class="col col-md-6">
-        <div class="rightDiv">
-          <p>raw data</p>
-          <pre>{{rawData | json}}</pre>
-        </div>
+    </mat-step>
+
+  </div>
+
+</mat-horizontal-stepper>
+<div class="flex-container">
+  <div class="flex-item container">
+    <router-outlet></router-outlet>
+  </div>
+</div>
+
+
+
+<div *ngIf="showDebugInfo">
+  <hr>
+  <div class="row">
+    <div class="col col-md-6">
+      <div class="left">
+        <p>Workflow</p>
+        <pre>{{workflow | json}}</pre>
+      </div>
+    </div>
+    <div class="col col-md-6">
+      <div class="rightDiv">
+        <p>raw data</p>
+        <pre>{{rawData | json}}</pre>
       </div>
     </div>
   </div>
+</div>

@@ -48,10 +48,10 @@ export class WorkflowStep implements IWorkflowStep {
     }
 }
 
-const personalStep: IWorkflowStep = new WorkflowStep("Please tell us about yourself.",STEPS.personal,"glyphicon glyphicon-user", false);
-const workStep: IWorkflowStep = new WorkflowStep("What do you do?.",STEPS.work,"glyphicon glyphicon-tasks");
-const addressStep: IWorkflowStep = new WorkflowStep("Where do you live?",STEPS.address,"glyphicon glyphicon-home");
-const resultStep: IWorkflowStep = new WorkflowStep("Thanks for staying tuned!",STEPS.result,"glyphicon glyphicon-ok");
+const personalStep: IWorkflowStep = new WorkflowStep("Please tell us about yourself.",STEPS.personal,"fa fa-user-o fa-2x", false);
+const workStep: IWorkflowStep = new WorkflowStep("What do you do?.",STEPS.work,"fa fa-address-card-o fa-2x");
+const addressStep: IWorkflowStep = new WorkflowStep("Where do you live?",STEPS.address,"fa fa-building-o fa-2x");
+const resultStep: IWorkflowStep = new WorkflowStep("Thanks for staying tuned!",STEPS.result,"fa fa-file-text-o fa-2x");
 
 
 abstract class BaseWorkflow implements IWorkflow{  
