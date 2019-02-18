@@ -15,14 +15,13 @@ export class CompanyGridComponent implements OnInit {
   constructor(private companyService: CompanyService) { }
 
   ngOnInit() {
-
     this.companyService.getCompanies()
     .subscribe(
     (data: Envelop<ICompany[]>) => {
       this.companies = data.result;
     },
-    (err: any) => console.log(err),
-    () => console.log(this.companies)
+    (err: any) => console.error(err),
+    () => console.info('loading of companies data done.')
     );
   }
 }

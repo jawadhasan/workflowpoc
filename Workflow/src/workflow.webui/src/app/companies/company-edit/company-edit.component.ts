@@ -26,25 +26,23 @@ export class CompanyEditComponent implements OnInit {
 
   constructor(private router: Router, private route: ActivatedRoute, private companyServie: CompanyService) { }
 
-  ngOnInit() {
-    console.log('companyedit component');
+  ngOnInit() {   
     const id = this.route.snapshot.params['id'];
     if (id !== '0') {
       this.operationText = 'Update';
-      this.getCustomer(id);
+      this.getCompany(id);
     }
   }
 
 
-    getCustomer(id: string) {
+  getCompany(id: string) {
       this.companyServie.getCompany(id)
         .subscribe((data: Envelop<ICompany>) => {
             this.company = data.result;
           },
         (err: any) => console.log(err),
-          () => console.log(this.company)
-          );
-      console.log(id);
+        () => console.log(`getCompany is done. for id: ${id}`)
+          );     
     }
 
     submit() {
