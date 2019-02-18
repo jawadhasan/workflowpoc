@@ -55,7 +55,7 @@ namespace Workflow.WebUi.Controllers
     }
 
     //may be need to change the url scheme e.g. id/personal
-    [HttpPut("personal/{id}")]
+    [HttpPut("{id}/personal")]
     public async Task<IActionResult> Personal(string id, [FromBody] UpdatePersonalStep updatePersonalStep)
     {
       try
@@ -73,7 +73,7 @@ namespace Workflow.WebUi.Controllers
       }
     }
     
-    [HttpPut("work/{id}")]
+    [HttpPut("{id}/work")]
     public async Task<IActionResult> Work(string id, [FromBody] UpdateWorkStep updateWorkStep)
     {
       try
@@ -91,7 +91,7 @@ namespace Workflow.WebUi.Controllers
       }
     }
     
-    [HttpPut("address/{id}")]
+    [HttpPut("{id}/address")]
     public async Task<IActionResult> Address(string id, [FromBody] UpdateAddressStep updateAddressStep)
     {
       try
@@ -112,7 +112,7 @@ namespace Workflow.WebUi.Controllers
       }
     }
     
-    [HttpPut("result/{id}")]
+    [HttpPut("{id}/result")]
     public async Task<IActionResult> Result(string id, [FromBody] UpdateResultStep updateResultStep)
     {
       try

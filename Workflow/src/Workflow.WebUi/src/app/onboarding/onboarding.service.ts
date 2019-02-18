@@ -7,11 +7,13 @@ import { STEPS, IWorkflow } from '../workflow/workflow.model';
 import { Invite } from '../data/formData.model';
 
 
+
 @Injectable({
     providedIn: 'root'
 })
 export class OnboardingService {  
-    apiUrl: string = "http://localhost:31540/api/";
+    // apiUrl: string = "http://localhost:31540/api/";
+    apiUrl: string = "http://localhost:31537/api/";
     workflow: IWorkflow;
     private formData: FormData = new FormData();
 
@@ -159,10 +161,10 @@ export class OnboardingService {
     loadWorkflow(requestId: string): Observable<IWorkflow> {
         return this.http.get<IWorkflow>(`${this.apiUrl}workflow/` + requestId);
     }
-
-    updateWorkflow(step:string, requestId: string, workflow: IWorkflow): Observable<any> {
-        console.log('updateWorkflow called for step: ', step);
-        return this.http.put<any>(`${this.apiUrl}workflow/${step}/` + requestId, workflow);
+    updateWorkflow(step:string, requestId: string, workflow: IWorkflow): Observable<any> {       
+        const url = `${this.apiUrl}workflow/${requestId}/${step}`;
+        console.log('updateworkflow url: ',url);
+        return this.http.put<any>(url, workflow);
     }
   
 }
