@@ -1,6 +1,7 @@
 using System;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using Workflow.Core;
 using Workflow.Core.Data;
 using Workflow.Core.Factories;
@@ -12,9 +13,12 @@ namespace Workflow.WebUi.Controllers
   public class WorkflowController : Controller
   {
     private readonly IWorkflowDataService _workflowDataService;
-    public WorkflowController(IWorkflowDataService workflowDataService)
+    private readonly ILogger<WorkflowController> _logger;
+
+    public WorkflowController(IWorkflowDataService workflowDataService, ILogger<WorkflowController> logger)
     {
       _workflowDataService = workflowDataService;
+      _logger = logger;
     }
 
     [HttpGet("{id}")]
@@ -27,6 +31,7 @@ namespace Workflow.WebUi.Controllers
       }
       catch (Exception e)
       {
+        _logger.LogError(e.Message);
         return BadRequest(e.Message);
       }
     }

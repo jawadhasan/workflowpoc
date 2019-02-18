@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Workflow.Core;
 using Workflow.Data.Entities;
 using Workflow.Data.Entities.Management;
 
@@ -13,6 +14,11 @@ namespace Workflow.Data
         public DbSet<Entities.Management.Workflow> Workflows { get; set; }
         public DbSet<Step> Steps { get; set; }
         public DbSet<WorkflowStep> WorkflowSteps { get; set; }
+
+
+
+
+        public DbSet<Company> Companies { get; set; }
 
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {

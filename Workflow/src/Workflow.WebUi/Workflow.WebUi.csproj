@@ -21,4 +21,8 @@
     <ProjectReference Include="..\Workflow.Data\Workflow.Data.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Infrastructure\" />
+  </ItemGroup>
+
 </Project>

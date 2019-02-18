@@ -9,6 +9,8 @@ import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { OnboardingModule } from './onboarding/onboarding.module';
 import { InviteComponent } from './invite/invite.component';
+import { CompaniesModule } from './companies/companies.module';
+
 
 @NgModule({
   declarations: [
@@ -20,7 +22,7 @@ import { InviteComponent } from './invite/invite.component';
     BrowserAnimationsModule, 
     HttpClientModule,
     SharedModule,
-    
+    CompaniesModule,
     OnboardingModule,
     RouterModule.forRoot([
       { path: '', component: InviteComponent },
