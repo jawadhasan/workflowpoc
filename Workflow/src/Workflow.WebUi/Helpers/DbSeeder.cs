@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
@@ -33,6 +34,7 @@ namespace Workflow.WebUi.Helpers
                 {
                     if (!await db.Workflows.AnyAsync())
                     {
+                        await InsertSampleData(db);
                         await InsertApplicationData(db);
                         //await InsertTestData(db);
                     }
@@ -97,7 +99,7 @@ namespace Workflow.WebUi.Helpers
 
 
             await db.SaveChangesAsync();
-            
+
             var personalStep = db.Steps.FirstOrDefault(s => s.Name == "Personal");
             var workStep = db.Steps.FirstOrDefault(s => s.Name == "Work");
             var addressStep = db.Steps.FirstOrDefault(s => s.Name == "Address");
@@ -118,13 +120,13 @@ namespace Workflow.WebUi.Helpers
 
             //create mapping for onboarding
             var onboardingWorkflow = db.Workflows.FirstOrDefault(w => w.Name == "OnBoarding");
-            var onboardingPersonal = new WorkflowStep {WorkflowId = onboardingWorkflow.Id, StepId = personalStep.Id};
+            var onboardingPersonal = new WorkflowStep { WorkflowId = onboardingWorkflow.Id, StepId = personalStep.Id };
             var onboardingWork = new WorkflowStep { WorkflowId = onboardingWorkflow.Id, StepId = workStep.Id };
             var onboardingAddress = new WorkflowStep { WorkflowId = onboardingWorkflow.Id, StepId = addressStep.Id };
             var onboardingResult = new WorkflowStep { WorkflowId = onboardingWorkflow.Id, StepId = resultStep.Id };
-            
 
-            
+
+
             db.WorkflowSteps.AddRange(
                 basicPersonal, basicResult,
                 simplePersonal, simpleWork, simpleResult,
@@ -142,5 +144,46 @@ namespace Workflow.WebUi.Helpers
                 throw;
             }
         }
+
+
+        public async Task InsertSampleData(AppDbContext db)
+        {
+            var states = GetStates();
+            db.States.AddRange(states);
+            db.Companies.AddRange(_Companies);
+            try
+            {
+                int numAffected = await db.SaveChangesAsync();
+                _Logger.LogInformation(@"Saved {numAffected} states");
+            }
+            catch (Exception exp)
+            {
+                _Logger.LogError($"Error in {nameof(DbSeeder)}: " + exp.Message);
+                throw;
+            }
+        }
+
+
+
+        private List<State> GetStates()
+        {
+            var states = new List<State>
+            {
+                new State { Name = "Alabama"},
+                new State { Name = "Montana"},
+                new State { Name = "Alaska"},
+                new State { Name = "Nebraska"},
+                new State { Name = "Arizona" }
+            };
+
+            return states;
+        }
+        private List<Company> _Companies = new List<Company>
+    {
+      new Company{Id = 1, Name = "Company1", IsActive = true},
+      new Company{Id = 2, Name = "Company2", IsActive = false},
+      new Company{Id = 3, Name = "Company3", IsActive = true}
+    };
+
     }
 }
