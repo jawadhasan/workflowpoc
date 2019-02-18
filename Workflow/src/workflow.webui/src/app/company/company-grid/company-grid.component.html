@@ -1,0 +1,48 @@
+<div class="container">
+  <span>{{pageTitle}}</span>
+
+
+  <div class="row">
+    <div class="col-md-8">
+      <div class="navbar">
+        Filter: <input type="text" />
+      </div>
+    </div>
+    <div class="col-md-4">
+      <a class="btn btn-default" [routerLink]="['company','0']">Add New Company</a>
+    </div>
+  </div>
+
+
+  <div class="row grid-container">
+    <div class="col-md-10">
+      <table class="table table-striped table-hover">
+       <thead>
+         <tr>
+           <th>Name</th>
+           <th>Street</th>
+           <th>City</th>
+           <th>PostCode</th>
+           <th>Active</th>
+         </tr>
+       </thead>
+        <tbody>
+          <tr *ngFor="let company of companies">
+            <td><a [routerLink]="['company',company.id]">{{company.name | capitalize}} </a></td>
+            <td>{{company.street | capitalize}}</td>
+            <td>{{company.city | capitalize}}</td>
+            <td>{{company.postCode | capitalize}}</td>
+            <td><input type="checkbox" [ngModel]="company.isActive" disabled /></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+
+
+
+
+
+</div>
+
